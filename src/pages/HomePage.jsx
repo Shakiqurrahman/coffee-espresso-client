@@ -1,9 +1,14 @@
 import React from 'react';
+import Hero from '../components/Hero';
+import Provides from '../components/Provides';
+import PopularProducts from '../components/PopularProducts';
 
 const HomePage = () => {
     return (
         <section>
-            <h1>Hello From Homepage</h1>
+            <Hero />
+            <Provides />
+            <PopularProducts />
         </section>
     );
 };

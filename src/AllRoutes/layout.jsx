@@ -5,10 +5,10 @@ import Footer from "../components/shared/Footer";
 const Layout = () => {
   return (
     <>
-      <div className="h-16 mb-10">
+      <div className="h-24">
         <Header />
       </div>
-      <div className="max-width">
+      <div>
         <Outlet />
       </div>
       <ScrollRestoration />

@@ -12,7 +12,7 @@ const Hero = () => {
       >
         <div className="max-width">
           <div className="flex  justify-end">
-            <div className="md:w-[55%]">
+            <div className="md:w-[60%]">
               <h1 className="text-2xl sm:text-4xl rancho-font font-semibold mb-4 rancho-font">
                 Would you like a Cup of Delicious Coffee?
               </h1>

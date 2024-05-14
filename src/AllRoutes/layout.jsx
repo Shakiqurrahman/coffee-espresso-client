@@ -5,7 +5,7 @@ import Footer from "../components/shared/Footer";
 const Layout = () => {
   return (
     <>
-      <div className="h-24">
+      <div className="h-16 sm:h-24">
         <Header />
       </div>
       <div>

@@ -11,8 +11,8 @@ const AddCoffeePage = () => {
           Back to home
         </Link>
       </div>
-      <div className="bg-[#F4F3F0] px-4 md:px-28 py-12 sm:py-[70px] mt-4 rounded-md">
-        <h2 className="text-3xl rancho-font font-[900] text-center text-[#374151] mb-8">
+      <div className="bg-[#F4F3F0] px-4 md:px-28 py-10 sm:py-[70px] mt-4 rounded-md">
+        <h2 className="text-3xl rancho-font font-[900] text-center text-[#374151] mb-4 sm:mb-8">
           Add New Coffee
         </h2>
         <p className="text-sm text-center w-4/5 mx-auto">
@@ -22,8 +22,8 @@ const AddCoffeePage = () => {
           letters, as opposed to using Content here.
         </p>
         <form className="mt-8" autoComplete="off">
-          <div className="grid gap-6 md:grid-cols-2">
-          <div className="flex flex-col gap-2">
+          <div className="grid gap-2 sm:gap-6 md:grid-cols-2">
+          <div className="flex flex-col gap-1 sm:gap-2">
             <label>Name</label>
             <input
               className="px-4 py-3 rounded-md outline-none text-sm "
@@ -33,7 +33,7 @@ const AddCoffeePage = () => {
               placeholder="Enter coffee name"
             />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1 sm:gap-2">
             <label>Chef</label>
             <input
               className="px-4 py-3 rounded-md outline-none text-sm"
@@ -43,7 +43,7 @@ const AddCoffeePage = () => {
               placeholder="Enter coffee chef"
             />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1 sm:gap-2">
             <label>Supplier</label>
             <input
               className="px-4 py-3 rounded-md outline-none text-sm "
@@ -53,7 +53,7 @@ const AddCoffeePage = () => {
               placeholder="Enter coffee supplier"
             />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1 sm:gap-2">
             <label>Taste</label>
             <input
               className="px-4 py-3 rounded-md outline-none text-sm"
@@ -63,7 +63,7 @@ const AddCoffeePage = () => {
               placeholder="Enter coffee taste"
             />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1 sm:gap-2">
             <label>Category</label>
             <input
               className="px-4 py-3 rounded-md outline-none text-sm "
@@ -73,7 +73,7 @@ const AddCoffeePage = () => {
               placeholder="Enter coffee category"
             />
           </div>
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1 sm:gap-2">
             <label>Details</label>
             <input
               className="px-4 py-3 rounded-md outline-none text-sm"
@@ -84,7 +84,7 @@ const AddCoffeePage = () => {
             />
           </div>
           </div>
-          <div className="flex flex-col gap-2 mt-4">
+          <div className="flex flex-col gap-1 sm:gap-2 mt-2 sm:mt-4">
             <label>Photo</label>
             <input
               className="px-4 py-3 rounded-md outline-none text-sm"

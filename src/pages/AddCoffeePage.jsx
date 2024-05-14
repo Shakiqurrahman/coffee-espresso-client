@@ -6,13 +6,13 @@ const AddCoffeePage = () => {
   return (
     <section className="max-width mt-4">
       <div>
-        <Link to='/' className="text-lg tracking-tight rancho-font font-[900]  text-[#374151] flex gap-2 items-center bg-transparent hover:bg-[#E3B577] px-3 py-2 w-[170px] rounded-md duration-300">
+        <Link to='/' className="text-lg rancho-font font-[900]  text-[#374151] flex gap-2 items-center bg-transparent hover:bg-[#E3B577] px-3 py-2 w-[170px] rounded-md duration-300">
           <FaArrowLeft />
           Back to home
         </Link>
       </div>
       <div className="bg-[#F4F3F0] px-28 py-[70px] mt-4 rounded-md">
-        <h2 className="text-3xl tracking-tighter rancho-font font-[900] text-center text-[#374151] mb-8">
+        <h2 className="text-3xl rancho-font font-[900] text-center text-[#374151] mb-8">
           Add New Coffee
         </h2>
         <p className="text-sm text-center w-4/5 mx-auto">

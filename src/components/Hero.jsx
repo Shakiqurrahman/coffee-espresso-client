@@ -6,7 +6,7 @@ const Hero = () => {
        <div>
          <div className='text-white bg-cover bg-bottom h-[90vh] flex items-center'
          style={{
-            backgroundImage: 'url("/src/assets/images/more/hero.png")',
+            backgroundImage: `url(${hero})`,
           }}>
            <div className='max-width'>
             <div className='flex  justify-end'>

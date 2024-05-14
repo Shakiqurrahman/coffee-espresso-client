@@ -1,11 +1,12 @@
 import logo from "../../assets/images/more/logo1.png";
+import logoBanner from "../../assets/images/more/logo-banner.jpg";
 
 const Header = () => {
   return (
     <header
       className="bg-cover bg-center h-24 w-full flex justify-center items-center"
       style={{
-        backgroundImage: 'url("/src/assets/images/more/logo-banner.jpg")',
+        backgroundImage: `url(${logoBanner})`,
       }}
     >
       <div className="flex absolute justify-center items-center gap-2 w-full">

@@ -44,7 +44,7 @@ const PopularProducts = () => {
     },
   ];
   return (
-    <section className="mt-[120px]">
+    <section className="mt-16 sm:mt-[120px]">
       <div className="relative" >
         <img className="absolute top-0 -left-20 hidden md:block opacity-90" src={leftShape} alt="" />
         <img className="absolute top-40 -right-20 hidden md:block opacity-90" src={rightShape} alt="" />
@@ -61,7 +61,7 @@ const PopularProducts = () => {
             </div>
           </button>
           </Link>
-          <div className="mt-12 grid md:grid-cols-2 gap-10 max-width">
+          <div className="mt-12 grid md:grid-cols-2 gap-4 sm:gap-10 max-width">
             {Coffeesdata.map((coffee) => (
               <div
                 className="bg-[#F5F4F1] p-4 py-6 sm:p-8 rounded-xl flex gap-2 justify-between items-center"

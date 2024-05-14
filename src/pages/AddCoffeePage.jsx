@@ -11,7 +11,7 @@ const AddCoffeePage = () => {
           Back to home
         </Link>
       </div>
-      <div className="bg-[#F4F3F0] px-28 py-[70px] mt-4 rounded-md">
+      <div className="bg-[#F4F3F0] px-4 md:px-28 py-12 sm:py-[70px] mt-4 rounded-md">
         <h2 className="text-3xl rancho-font font-[900] text-center text-[#374151] mb-8">
           Add New Coffee
         </h2>

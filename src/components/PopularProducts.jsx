@@ -85,13 +85,13 @@ const PopularProducts = () => {
                   </h3>
                 </div>
                 <div className="flex flex-col space-y-4 relative z-20">
-                  <button className="size-10 bg-[#D2B48C] flex justify-center items-center text-xl text-white rounded-md">
+                  <button className="size-10 bg-[#D2B48C] flex justify-center items-center text-xl text-white rounded-md hover:opacity-85 duration-200">
                     <IoEye />
                   </button>
-                  <button className="size-10 bg-[#3C393B] flex justify-center items-center text-xl text-white rounded-md">
+                  <button className="size-10 bg-[#3C393B] flex justify-center items-center text-xl text-white rounded-md hover:opacity-85 duration-200">
                     <HiPencil />
                   </button>
-                  <button className="size-10 bg-[#EA4744] flex justify-center items-center text-xl text-white rounded-md">
+                  <button className="size-10 bg-[#EA4744] flex justify-center items-center text-xl text-white rounded-md hover:opacity-85 duration-200">
                     <MdDelete />
                   </button>
                 </div>

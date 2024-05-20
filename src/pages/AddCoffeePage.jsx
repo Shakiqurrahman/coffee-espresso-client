@@ -1,12 +1,13 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import shape from "../assets/images/more/11.png";
-import Swal from "sweetalert2";
 import CoffeeForm from "../components/CoffeeForm";
+import Swal from "sweetalert2";
 
 const AddCoffeePage = () => {
-  const handleAddCoffe = (e) => {
+  const navigate = useNavigate();
+  const handleAddCoffee = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -72,7 +73,7 @@ const AddCoffeePage = () => {
             Back to home
           </Link>
         </div>
-        <CoffeeForm handleAddCoffe={handleAddCoffe}/>
+        <CoffeeForm handleAddCoffee={handleAddCoffee}/>
       </div>
     </section>
   );

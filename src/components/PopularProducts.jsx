@@ -5,21 +5,17 @@ import { HiPencil } from "react-icons/hi2";
 import { IoEye } from "react-icons/io5";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
-import img1 from "../assets/images/1.png";
-import img2 from "../assets/images/2.png";
-import img3 from "../assets/images/3.png";
-import img4 from "../assets/images/4.png";
+import Swal from "sweetalert2";
 import leftShape from "../assets/images/more/left-shape.png";
 import rightShape from "../assets/images/more/right-shape.png";
-import Swal from "sweetalert2";
 
 const PopularProducts = () => {
-  const [data, setData] = useState([]);
+  const [coffeedata, setCoffeedata] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:8000/coffee");
-        setData(response.data);
+        setCoffeedata(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -28,8 +24,7 @@ const PopularProducts = () => {
     fetchData();
   }, []);
 
-  const deleteCoffee = (_id) => { 
-    console.log(_id);
+  const deleteCoffee = (_id) => {
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -37,28 +32,30 @@ const PopularProducts = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(`http://localhost:8000/coffee/${_id}`, {
-          method: 'DELETE'
+          method: "DELETE",
         })
-        .then(res => res.json())
-        .then(data => {
-          if(data.deletedCount > 0) {
-            Swal.fire({
-              icon:'success',
-              title: 'Coffee Deleted Successfully',
-              showConfirmButton: false,
-              timer: 1500
-            })
-          }
-        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                icon: "success",
+                title: "Coffee Deleted Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              const filteredData = coffeedata.filter(
+                (data) => data._id !== _id
+              );
+              setCoffeedata(filteredData);
+            }
+          });
       }
     });
-  }
-
-
+  };
 
   return (
     <section className="mt-16 sm:mt-[120px]">
@@ -87,7 +84,7 @@ const PopularProducts = () => {
             </button>
           </Link>
           <div className="mt-12 grid md:grid-cols-2 gap-4 sm:gap-10 max-width">
-            {data.map((coffee, index) => (
+            {coffeedata.map((coffee, index) => (
               <div
                 className="bg-[#F5F4F1] p-4 py-6 sm:p-8 rounded-xl flex gap-2 justify-between items-center"
                 key={index}
@@ -102,11 +99,12 @@ const PopularProducts = () => {
                     <span className="font-semibold">Name :</span> {coffee.name}
                   </h3>
                   <h3 className="mb-2 text-lg">
-                    <span className="font-semibold">Flavour :</span> {coffee.taste}
+                    <span className="font-semibold">Flavour :</span>{" "}
+                    {coffee.taste}
                   </h3>
                   <h3 className="mb-2 text-lg">
                     <span className="font-semibold">Price :</span>{" "}
-                    {coffee.price} Taka
+                    {coffee.price} Tk.
                   </h3>
                 </div>
                 <div className="flex flex-col space-y-4 relative z-20">
@@ -114,11 +112,14 @@ const PopularProducts = () => {
                     <IoEye />
                   </button>
                   <Link to={`update-coffee/${coffee._id}`}>
-                  <button className="size-10 bg-[#3C393B] flex justify-center items-center text-xl text-white rounded-md hover:opacity-85 duration-200">
-                    <HiPencil />
-                  </button>
+                    <button className="size-10 bg-[#3C393B] flex justify-center items-center text-xl text-white rounded-md hover:opacity-85 duration-200">
+                      <HiPencil />
+                    </button>
                   </Link>
-                  <button onClick={() => deleteCoffee(coffee._id)} className="size-10 bg-[#EA4744] flex justify-center items-center text-xl text-white rounded-md hover:opacity-85 duration-200">
+                  <button
+                    onClick={() => deleteCoffee(coffee._id)}
+                    className="size-10 bg-[#EA4744] flex justify-center items-center text-xl text-white rounded-md hover:opacity-85 duration-200"
+                  >
                     <MdDelete />
                   </button>
                 </div>

@@ -1,6 +1,6 @@
 import React from "react";
 
-const CoffeeForm = ({updated,handleAddCoffe,handleUpdateCoffee,coffee,}) => {
+const CoffeeForm = ({updated,handleAddCoffee,handleUpdateCoffee,coffee,}) => {
   const { name, price, supplier, taste, category, details, photo } = coffee || {};
   return (
     <div className="bg-[#F4F3F0] px-4 md:px-28 py-10 sm:py-[70px] mt-4 rounded-md">
@@ -16,7 +16,7 @@ const CoffeeForm = ({updated,handleAddCoffe,handleUpdateCoffee,coffee,}) => {
       <form
         className="mt-8"
         autoComplete="off"
-        onSubmit={updated ? handleUpdateCoffee : handleAddCoffe}
+        onSubmit={updated ? handleUpdateCoffee : handleAddCoffee}
       >
         <div className="grid gap-2 sm:gap-6 md:grid-cols-2">
           <div className="flex flex-col gap-1 sm:gap-2">
@@ -28,6 +28,7 @@ const CoffeeForm = ({updated,handleAddCoffe,handleUpdateCoffee,coffee,}) => {
               type="text"
               defaultValue={updated ? name : ""}
               placeholder="Enter coffee name"
+              required
             />
           </div>
           <div className="flex flex-col gap-1 sm:gap-2">
@@ -39,6 +40,7 @@ const CoffeeForm = ({updated,handleAddCoffe,handleUpdateCoffee,coffee,}) => {
               type="number"
               defaultValue={updated ? price : ""}
               placeholder="Enter coffee price"
+              required
             />
           </div>
           <div className="flex flex-col gap-1 sm:gap-2">

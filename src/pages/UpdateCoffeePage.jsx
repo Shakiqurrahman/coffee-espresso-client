@@ -1,6 +1,6 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, redirect, useLoaderData, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import shape from "../assets/images/more/11.png";
 import CoffeeForm from "../components/CoffeeForm";
@@ -8,6 +8,8 @@ import CoffeeForm from "../components/CoffeeForm";
 const UpdateCoffeePage = () => {
   const coffee = useLoaderData();
   const { _id } = coffee;
+
+  const navigate = useNavigate();
 
   const handleUpdateCoffee = (e) => {
     e.preventDefault();
@@ -28,7 +30,6 @@ const UpdateCoffeePage = () => {
       details,
       photo,
     };
-    form.reset();
 
     // send data to the server
     fetch(`http://localhost:8000/coffee/${_id}`, {
@@ -48,6 +49,7 @@ const UpdateCoffeePage = () => {
             timer: 1500,
           });
         }
+        navigate(-1);
       });
   };
   return (

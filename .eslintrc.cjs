@@ -17,9 +17,9 @@ module.exports = {
       'warn',
       { allowConstantExport: true },
     ],
-    "no-unused-vars": [
-      "error",
-      "none"
-  ], // for disable 'importing react' eslint error
+  //   "no-unused-vars": [
+  //     "error",
+  //     "none"
+  // ], // for disable 'importing react' eslint error
   },
 }

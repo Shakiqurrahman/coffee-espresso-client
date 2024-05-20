@@ -1,12 +1,15 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import shape from "../assets/images/more/11.png";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import shape from "../assets/images/more/11.png";
 import CoffeeForm from "../components/CoffeeForm";
 
-const AddCoffeePage = () => {
-  const handleAddCoffe = (e) => {
+const UpdateCoffeePage = () => {
+  const coffee = useLoaderData();
+  const { _id } = coffee;
+
+  const handleUpdateCoffee = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
@@ -16,7 +19,7 @@ const AddCoffeePage = () => {
     const category = form.category.value;
     const details = form.details.value;
     const photo = form.photo.value;
-    const newCoffee = {
+    const updatedCoffee = {
       name,
       price,
       supplier,
@@ -28,30 +31,22 @@ const AddCoffeePage = () => {
     form.reset();
 
     // send data to the server
-    fetch("http://localhost:8000/coffee", {
-      method: "POST",
+    fetch(`http://localhost:8000/coffee/${_id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(newCoffee),
+      body: JSON.stringify(updatedCoffee),
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             icon: "success",
-            title: "Coffee Added Successfully",
+            title: "Coffee Updated Successfully",
             showConfirmButton: false,
             timer: 1500,
           });
-        }
-        else {
-          Swal.fire({
-            title: 'Error!',
-            text: 'Coffee is not addded. Please try again later',
-            icon: 'error',
-            confirmButtonText: 'Okay'
-          })
         }
       });
   };
@@ -72,10 +67,14 @@ const AddCoffeePage = () => {
             Back to home
           </Link>
         </div>
-        <CoffeeForm handleAddCoffe={handleAddCoffe}/>
+        <CoffeeForm
+          handleUpdateCoffee={handleUpdateCoffee}
+          updated={true}
+          coffee={coffee}
+        />
       </div>
     </section>
   );
 };
 
-export default AddCoffeePage;
+export default UpdateCoffeePage;

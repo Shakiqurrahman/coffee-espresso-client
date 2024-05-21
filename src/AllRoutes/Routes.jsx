@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
       {
         path: "/update-coffee/:id",
         element: <UpdateCoffeePage />,
-        loader : ({params}) => fetch(`http://localhost:8000/coffee/${params.id}`),
+        loader : ({params}) => fetch(`https://coffee-espresso-server75.vercel.app/coffee/${params.id}`),
       },
       {
         path: "/about",

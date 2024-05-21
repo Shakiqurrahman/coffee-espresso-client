@@ -6,7 +6,6 @@ import CoffeeForm from "../components/CoffeeForm";
 import Swal from "sweetalert2";
 
 const AddCoffeePage = () => {
-  const navigate = useNavigate();
   const handleAddCoffee = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -29,7 +28,7 @@ const AddCoffeePage = () => {
     form.reset();
 
     // send data to the server
-    fetch("http://localhost:8000/coffee", {
+    fetch("https://coffee-espresso-server75.vercel.app/coffee", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

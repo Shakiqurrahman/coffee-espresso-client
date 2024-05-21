@@ -14,7 +14,7 @@ const PopularProducts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/coffee");
+        const response = await axios.get("https://coffee-espresso-server75.vercel.app/coffee");
         setCoffeedata(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -35,7 +35,7 @@ const PopularProducts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:8000/coffee/${_id}`, {
+        fetch(`https://coffee-espresso-server75.vercel.app/coffee/${_id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

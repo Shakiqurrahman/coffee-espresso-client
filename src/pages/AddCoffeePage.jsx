@@ -1,9 +1,9 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import shape from "../assets/images/more/11.png";
 import CoffeeForm from "../components/CoffeeForm";
-import Swal from "sweetalert2";
 
 const AddCoffeePage = () => {
   const handleAddCoffee = (e) => {
@@ -37,21 +37,20 @@ const AddCoffeePage = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if(data.insertedId) {
+        if (data.insertedId) {
           Swal.fire({
             icon: "success",
             title: "Coffee Added Successfully",
             showConfirmButton: false,
             timer: 1500,
           });
-        }
-        else {
+        } else {
           Swal.fire({
-            title: 'Error!',
-            text: 'Coffee is not addded. Please try again later',
-            icon: 'error',
-            confirmButtonText: 'Okay'
-          })
+            title: "Error!",
+            text: "Coffee is not addded. Please try again later",
+            icon: "error",
+            confirmButtonText: "Okay",
+          });
         }
       });
   };
@@ -72,7 +71,7 @@ const AddCoffeePage = () => {
             Back to home
           </Link>
         </div>
-        <CoffeeForm handleAddCoffee={handleAddCoffee}/>
+        <CoffeeForm handleAddCoffee={handleAddCoffee} />
       </div>
     </section>
   );

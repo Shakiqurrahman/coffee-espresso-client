@@ -4,6 +4,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Layout from "./layout";
 import AddCoffeePage from "../pages/AddCoffeePage";
 import UpdateCoffeePage from "../pages/UpdateCoffeePage";
+import CoffeeDetailsPage from "../pages/CoffeeDetailsPage";
 
 export const router = createBrowserRouter([
   {
@@ -17,6 +18,11 @@ export const router = createBrowserRouter([
       {
         path: "/add-coffee",
         element: <AddCoffeePage />,
+      },
+      {
+        path: "/coffee/:id",
+        element: <CoffeeDetailsPage />,
+        loader : ({params}) => fetch(`https://coffee-espresso-server75.vercel.app/coffee/${params.id}`),
       },
       {
         path: "/update-coffee/:id",

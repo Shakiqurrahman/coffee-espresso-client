@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { BsCupHot } from "react-icons/bs";
 import { HiPencil } from "react-icons/hi2";
 import { IoEye } from "react-icons/io5";
@@ -8,21 +8,32 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import leftShape from "../assets/images/more/left-shape.png";
 import rightShape from "../assets/images/more/right-shape.png";
+import { HashLoader } from "react-spinners";
+
+const fetchCoffees = async () => {
+  const response = await axios.get("https://coffee-espresso-server75.vercel.app/coffee");
+  return response.data;
+};
+
+const deleteCoffeeById = async (_id) => {
+  const response = await axios.delete(`https://coffee-espresso-server75.vercel.app/coffee/${_id}`);
+  return response.data;
+};
 
 const PopularProducts = () => {
-  const [coffeedata, setCoffeedata] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get("https://coffee-espresso-server75.vercel.app/coffee");
-        setCoffeedata(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  const queryClient = useQueryClient();
 
-    fetchData();
-  }, []);
+  const { data: coffeedata, isLoading, isError } = useQuery({
+    queryKey: ["coffee"],
+    queryFn: fetchCoffees,
+  });
+
+  const deleteMutation = useMutation({
+    mutationFn: deleteCoffeeById,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["coffee"] });
+    },
+  });
 
   const deleteCoffee = (_id) => {
     Swal.fire({
@@ -35,27 +46,27 @@ const PopularProducts = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://coffee-espresso-server75.vercel.app/coffee/${_id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              Swal.fire({
-                icon: "success",
-                title: "Coffee Deleted Successfully",
-                showConfirmButton: false,
-                timer: 1500,
-              });
-              const filteredData = coffeedata.filter(
-                (data) => data._id !== _id
-              );
-              setCoffeedata(filteredData);
-            }
-          });
+        deleteMutation.mutate(_id, {
+          onSuccess: () => {
+            Swal.fire({
+              icon: "success",
+              title: "Coffee Deleted Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          },
+        });
       }
     });
   };
+
+  if (isLoading) {
+    return <div className="flex justify-center items-center h-[50vh]"><HashLoader size={120}/></div>;
+  }
+
+  if (isError) {
+    return <div>Error fetching data</div>;
+  }
 
   return (
     <section className="mt-16 sm:mt-[120px]">
@@ -84,10 +95,10 @@ const PopularProducts = () => {
             </button>
           </Link>
           <div className="mt-12 grid md:grid-cols-2 gap-4 sm:gap-10 max-width">
-            {coffeedata.map((coffee, index) => (
+            {coffeedata.map((coffee) => (
               <div
                 className="bg-[#F5F4F1] p-4 py-6 sm:p-8 rounded-xl flex gap-2 justify-between items-center"
-                key={index}
+                key={coffee._id}
               >
                 <img
                   className="w-[40%] relative z-20"
@@ -108,11 +119,11 @@ const PopularProducts = () => {
                   </h3>
                 </div>
                 <div className="flex flex-col space-y-4 relative z-20">
-                 <Link to={`coffee/${coffee._id}`}>
-                 <button className="size-10 bg-[#D2B48C] flex justify-center items-center text-xl text-white rounded-md hover:opacity-85 duration-200">
-                    <IoEye />
-                  </button>
-                 </Link>
+                  <Link to={`coffee/${coffee._id}`}>
+                    <button className="size-10 bg-[#D2B48C] flex justify-center items-center text-xl text-white rounded-md hover:opacity-85 duration-200">
+                      <IoEye />
+                    </button>
+                  </Link>
                   <Link to={`update-coffee/${coffee._id}`}>
                     <button className="size-10 bg-[#3C393B] flex justify-center items-center text-xl text-white rounded-md hover:opacity-85 duration-200">
                       <HiPencil />

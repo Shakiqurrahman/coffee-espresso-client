@@ -38,7 +38,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <p className="text-center py-3 rancho-font  bg-[#374151] text-white">Copyright Espresso Emporium ! All Rights Reserved</p>
+      <p className="text-center py-3 rancho-font   bg-[#374151] text-white">Copyright Espresso Emporium ! All Rights Reserved</p>
     </footer>
   );
 };

@@ -34,7 +34,7 @@ const CoffeeForm = ({updated,handleAddCoffee,handleUpdateCoffee,coffee,}) => {
           <div className="flex flex-col gap-1 sm:gap-2">
             <label>Price</label>
             <input
-              className="px-4 py-3 rounded-md outline-none text-sm "
+              className="px-4 py-3 rounded-md outline-none text-sm"
               id="price"
               name="price"
               type="number"

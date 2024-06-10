@@ -65,7 +65,7 @@ const PopularProducts = () => {
   }
 
   if (isError) {
-    return <div>Error fetching data</div>;
+    return <div className="flex justify-center items-center h-[50vh] text-2xl font-semibold text-red-500">Error Fetching Data!</div>;
   }
 
   return (
